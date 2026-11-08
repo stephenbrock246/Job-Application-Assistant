@@ -1,0 +1,49 @@
+{
+  "name": "job-apply-assistant",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Chrome Side Panel extension that assists with job applications: Google Sheets queue, resume tailoring, and form autofill.",
+  "scripts": {
+    "dev": "vite",
+    "build": "npm run typecheck && vite build",
+    "build:only": "vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.node.json",
+    "check:scanner": "tsx scripts/check-scanner.ts",
+    "check:csv": "tsx scripts/check-csv.ts",
+    "check:navigation": "tsx scripts/check-navigation.ts",
+    "check:resume": "tsx scripts/check-resume.ts",
+    "check:ai": "tsx scripts/check-ai.ts",
+    "check:links": "tsx scripts/check-links.ts",
+    "check:recorder": "tsx scripts/check-recorder.ts",
+    "check:run": "tsx scripts/check-run.ts",
+    "check:content": "tsx scripts/check-content.ts",
+    "check:fixes": "tsx scripts/check-fixes.ts",
+    "check": "npm run check:scanner && npm run check:csv && npm run check:navigation && npm run check:resume && npm run check:ai && npm run check:links && npm run check:recorder && npm run check:run && npm run check:content && npm run check:fixes",
+    "ui:preview": "vite --config scripts/ui-preview/vite.config.ts"
+  },
+  "dependencies": {
+    "fflate": "^0.8.3",
+    "pdf-lib": "^1.17.1",
+    "pdfjs-dist": "^6.4.299",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "devDependencies": {
+    "@crxjs/vite-plugin": "^2.7.1",
+    "@types/chrome": "^0.3.0",
+    "@types/jsdom": "^30.0.0",
+    "@types/node": "^26.6.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.1",
+    "autoprefixer": "^10.4.21",
+    "jsdom": "^29.1.1",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.19",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3",
+    "vite": "^8.3.0"
+  }
+}

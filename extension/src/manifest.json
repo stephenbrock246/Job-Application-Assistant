@@ -1,0 +1,55 @@
+{
+  "manifest_version": 3,
+  "name": "JobApply Assistant",
+  "version": "0.1.0",
+  "description": "Apply smarter. Works through your job list, tailors your resume and cover letter, and assists with application forms - you stay in control of the final submit.",
+  "minimum_chrome_version": "116",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "action": {
+    "default_title": "Open JobApply Assistant",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "48": "icons/icon-48.png"
+    }
+  },
+  "side_panel": {
+    "default_path": "src/sidepanel/index.html"
+  },
+  "background": {
+    "service_worker": "src/background/service-worker.ts",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["src/content/index.ts"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  "permissions": [
+    "sidePanel",
+    "storage",
+    "tabs",
+    "scripting",
+    "identity",
+    "downloads",
+    "downloads.open",
+    "unlimitedStorage",
+    "notifications",
+    "clipboardWrite",
+    "clipboardRead"
+  ],
+  "host_permissions": ["<all_urls>"],
+  "oauth2": {
+    "client_id": "REPLACE_WITH_YOUR_CHROME_APP_OAUTH_CLIENT_ID.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/spreadsheets",
+      "https://www.googleapis.com/auth/userinfo.email"
+    ]
+  }
+}

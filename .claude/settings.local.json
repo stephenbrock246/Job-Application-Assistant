@@ -1,0 +1,40 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(npm run check:navigation; \"EXIT $LASTEXITCODE\")",
+      "PowerShell(npm run check 2>$null | Select-String -Pattern \"passed|FAIL|failed|Error\"; \"CHECK EXIT $LASTEXITCODE\"; npm run build 2>$null | Select-String -Pattern \"error|built in|TS\\\\d+\"; \"BUILD EXIT $LASTEXITCODE\")",
+      "PowerShell(npx tsc --noEmit -p tsconfig.json; \"EXIT $LASTEXITCODE\")",
+      "PowerShell(npx tsx scripts\\\\_tmp-dump.mts)",
+      "PowerShell(Remove-Item scripts\\\\_tmp-dump.mts -Confirm:$false)",
+      "PowerShell(npm run check:resume 2>$null | Select-String -Pattern \"FAIL|name|email|location|title|company|proposed|source|overwrite|empty fields|replace|CAPS|GitHub|country|Present|years|skills|passed|failed\"; \"EXIT $LASTEXITCODE\")",
+      "PowerShell(npm run check:navigation 2>$null | Select-String -Pattern \"FAIL|job|row|link|tab resolves|posting|list|passed|failed\"; \"EXIT $LASTEXITCODE\")",
+      "PowerShell(npx tsx scripts/check-navigation.ts 2>&1)",
+      "PowerShell(npx tsc --noEmit -p tsconfig.json 2>$null | Select-String \"error\"; \"EXIT $LASTEXITCODE\")",
+      "PowerShell(npx tsx scripts/check-resume.ts 2>&1)",
+      "WebFetch(domain:humangpt.io)",
+      "PowerShell(npx tsx scripts/check-ai.ts 2>&1)",
+      "PowerShell(npm run check:content 2>&1)",
+      "PowerShell(npx tsc --noEmit -p . 2>&1)",
+      "PowerShell(npm run check:content 2>$null)",
+      "PowerShell(npx tsc --noEmit -p .)",
+      "PowerShell(npm run build 2>$null)",
+      "PowerShell(npx tsx scripts/tmp-bold.ts)",
+      "PowerShell($z = Get-ChildItem -Recurse -Filter JobApply-Assistant.zip -Path \"C:\\\\Users\\\\Valued Customer\\\\Videos\\\\Assistant\" | Where-Object { $_.FullName -notmatch 'node_modules' }; $z | Select-Object FullName, Length, LastWriteTime | Format-List; Add-Type -AssemblyName System.IO.Compression.FileSystem; $a = [IO.Compression.ZipFile]::OpenRead\\($z[0].FullName\\); $a.Entries | Select-Object -First 15 FullName; \"count: $\\($a.Entries.Count\\)\"; $a.Dispose\\(\\))",
+      "PowerShell(Get-Content package.json; Get-ChildItem extension/src -Recurse -File | Where-Object { $_.Extension -in '.ts','.tsx','.css','.html' } | ForEach-Object { \"{0,6}  {1}\" -f \\(Get-Content $_.FullName\\).Count, $_.FullName.Substring\\(\\(Get-Location\\).Path.Length + 1\\) })",
+      "PowerShell(npm run typecheck 2>&1 | Select-Object -Last 5; foreach \\($s in 'scanner','csv','navigation','resume','ai','links','recorder','run','content'\\) { $out = npx tsx \"scripts/check-$s.ts\" 2>$null; $fails = $out | Select-String '^FAIL'; \"{0,-11} exit={1} fails={2} | {3}\" -f $s, $LASTEXITCODE, $fails.Count, \\($out | Select-Object -Last 1\\); $fails | ForEach-Object { \"    $_\" } })",
+      "PowerShell(cd \"C:\\\\Users\\\\Valued Customer\\\\Videos\\\\Assistant\\\\Assistant\\\\extension\\\\src\"; Get-ChildItem -Recurse -File background,sidepanel\\\\lib\\\\runner.ts,sidepanel\\\\hooks,sidepanel\\\\state,shared\\\\utils\\\\messaging.ts,storage,ai\\\\chatgpt-project.provider.ts,content\\\\index.ts | ForEach-Object { \"{0} {1}\" -f \\(Get-Content $_.FullName | Measure-Object -Line\\).Lines, $_.FullName })",
+      "PowerShell(cd \"C:\\\\Users\\\\Valued Customer\\\\Videos\\\\Assistant\\\\Assistant\\\\extension\\\\src\"; Get-ChildItem -Recurse -File content,autofill,ai,resume,jobsource,sidepanel\\\\lib,shared\\\\constants | ForEach-Object { \"{0}`t{1}\" -f \\(Get-Content $_.FullName | Measure-Object -Line\\).Lines, $_.FullName.Substring\\(\\(Get-Location\\).Path.Length+1\\) })",
+      "PowerShell(npx vite --config scripts/ui-preview/vite.config.ts)",
+      "PowerShell($shots = \"C:\\\\Users\\\\VALUED~1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\1a0a7791edd3ef99\\\\e317109f-11b0-44bb-baba-3ed84087df7b\\\\scratchpad\\\\shots\"; Get-ChildItem $shots -ErrorAction SilentlyContinue | Select-Object Name, Length; try { \\(Invoke-WebRequest http://localhost:5180/ -UseBasicParsing -TimeoutSec 3\\).StatusCode } catch { \"server: $\\($_.Exception.Message\\)\" })",
+      "PowerShell(cd \"C:\\\\Users\\\\Valued Customer\\\\Videos\\\\Assistant\\\\Assistant\"; $s=\"C:\\\\Users\\\\VALUED~1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\1a0a7791edd3ef99\\\\e317109f-11b0-44bb-baba-3ed84087df7b\\\\scratchpad\"; Copy-Item \"$s\\\\t1.ts\" \"$s\\\\t1.mts\" -Force; npx tsx \"$s\\\\t1.mts\")",
+      "PowerShell(powershell -NoProfile -ExecutionPolicy Bypass -File scripts/ui-preview/shoot.ps1 -Out \"C:\\\\Users\\\\VALUED~1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\1a0a7791edd3ef99\\\\e317109f-11b0-44bb-baba-3ed84087df7b\\\\scratchpad\\\\shots\" -Prefix before)",
+      "PowerShell(npx tsc --noEmit -p tsconfig.json | Select-Object -First 20; if \\($LASTEXITCODE -eq 0\\) { powershell -NoProfile -ExecutionPolicy Bypass -File scripts/ui-preview/shoot.ps1 -Out \"C:\\\\Users\\\\VALUED~1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\1a0a7791edd3ef99\\\\e317109f-11b0-44bb-baba-3ed84087df7b\\\\scratchpad\\\\shots\" -Prefix after })",
+      "PowerShell(npx tsc --noEmit -p tsconfig.json)",
+      "PowerShell(npx tsx \"C:\\\\Users\\\\VALUED~1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\1a0a7791edd3ef99\\\\e317109f-11b0-44bb-baba-3ed84087df7b\\\\scratchpad\\\\opt.mts\")",
+      "PowerShell(npx tsx \"C:\\\\Users\\\\VALUED~1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\1a0a7791edd3ef99\\\\e317109f-11b0-44bb-baba-3ed84087df7b\\\\scratchpad\\\\labels.mts\")",
+      "PowerShell(npx tsx \"C:\\\\Users\\\\VALUED~1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\1a0a7791edd3ef99\\\\e317109f-11b0-44bb-baba-3ed84087df7b\\\\scratchpad\\\\prof.mts\")",
+      "PowerShell(npm run typecheck 2>&1 | Select-Object -Last 15; foreach \\($s in 'scanner','csv','navigation','resume','ai','links','recorder','run','content'\\) { $out = npx tsx \"scripts/check-$s.ts\" 2>$null; $fails = $out | Select-String '^FAIL'; \"{0,-11} exit={1} fails={2}\" -f $s, $LASTEXITCODE, $fails.Count; $fails | ForEach-Object { \"    $_\" } })",
+      "PowerShell(npx tsx scripts/check-fixes.ts)"
+    ]
+  }
+}

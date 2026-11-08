@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Software Engineer - Acme Technologies</title>
+  </head>
+  <body>
+    <nav>
+      <input type="search" name="site_search" placeholder="Search jobs" />
+    </nav>
+
+    <main>
+      <h1>Apply to Acme Technologies</h1>
+      <p>Please fill out the information below. Fields marked with * are required.</p>
+
+      <form id="application">
+        <!-- Explicit label[for], the easy case -->
+        <div class="field required">
+          <label for="full_name">Full name *</label>
+          <input type="text" id="full_name" name="full_name" autocomplete="name" required />
+        </div>
+
+        <div class="field required">
+          <label for="email">Email address *</label>
+          <input type="email" id="email" name="email" autocomplete="email" required />
+        </div>
+
+        <!-- Placeholder-only label -->
+        <div class="field">
+          <input type="tel" id="phone" name="phone_number" placeholder="Phone number" required />
+        </div>
+
+        <!-- Label as a preceding sibling div, Greenhouse/Lever style -->
+        <div class="field">
+          <div class="field__label">Location</div>
+          <div class="field__control">
+            <input type="text" name="candidate_location" />
+          </div>
+        </div>
+
+        <!-- aria-label only -->
+        <div class="field">
+          <input type="text" name="current_title" aria-label="Current title" />
+        </div>
+
+        <!-- Select with a placeholder option -->
+        <div class="field required">
+          <label for="experience">Years of experience *</label>
+          <select id="experience" name="years_experience" required>
+            <option value="">Select an option</option>
+            <option value="1">1 year</option>
+            <option value="3">3 years</option>
+            <option value="5">5 years</option>
+            <option value="10">10+ years</option>
+          </select>
+        </div>
+
+        <!-- Salary, phrased differently from the canonical name -->
+        <div class="field required">
+          <label for="comp">Expected compensation (monthly) *</label>
+          <input type="text" id="comp" name="expected_comp" required />
+        </div>
+
+        <!-- The field from the mockup that has no saved value -->
+        <div class="field required">
+          <label for="notice">Notice period *</label>
+          <select id="notice" name="notice_period" required>
+            <option value="">Select an option</option>
+            <option value="immediate">Immediately</option>
+            <option value="2w">2 weeks</option>
+            <option value="1m">1 month</option>
+            <option value="3m">3 months</option>
+          </select>
+        </div>
+
+        <!-- Radio group inside a fieldset -->
+        <fieldset>
+          <legend>Are you authorized to work in the U.S.? *</legend>
+          <label><input type="radio" name="work_auth" value="yes" required /> Yes</label>
+          <label><input type="radio" name="work_auth" value="no" /> No</label>
+        </fieldset>
+
+        <!-- Sponsorship, long question wording -->
+        <fieldset>
+          <legend>Will you now or in the future require sponsorship for employment visa status?</legend>
+          <label><input type="radio" name="sponsorship" value="yes" /> Yes</label>
+          <label><input type="radio" name="sponsorship" value="no" /> No</label>
+        </fieldset>
+
+        <!-- Free-text question - should be AI_GENERATED -->
+        <div class="field">
+          <label for="why">Why are you interested in this position?</label>
+          <textarea id="why" name="why_interested" rows="4"></textarea>
+        </div>
+
+        <!-- File upload - must never be auto-filled -->
+        <div class="field required">
+          <label for="resume">Upload your resume *</label>
+          <input type="file" id="resume" name="resume" required />
+        </div>
+
+        <!-- Legal attestation - must never be auto-ticked -->
+        <div class="field required">
+          <label>
+            <input type="checkbox" name="certify" required />
+            I certify that the information provided in this application is true and complete.
+          </label>
+        </div>
+
+        <!-- Consent checkbox - must never be auto-ticked -->
+        <div class="field required">
+          <label>
+            <input type="checkbox" name="privacy" required />
+            I agree to the processing of my personal data in accordance with Acme's Privacy Policy. *
+          </label>
+        </div>
+
+        <!-- Voluntary demographic - must never be auto-answered -->
+        <div class="field">
+          <label for="gender">Gender (voluntary)</label>
+          <select id="gender" name="gender">
+            <option value="">Select an option</option>
+            <option value="f">Female</option>
+            <option value="m">Male</option>
+            <option value="d">Decline to self-identify</option>
+          </select>
+        </div>
+
+        <!-- Veteran status - must never be auto-answered -->
+        <div class="field">
+          <label for="veteran">Protected veteran status</label>
+          <select id="veteran" name="veteran_status">
+            <option value="">Select an option</option>
+            <option value="y">I identify as a protected veteran</option>
+            <option value="n">I am not a protected veteran</option>
+          </select>
+        </div>
+
+        <!-- Already prefilled by the site - must not be overwritten -->
+        <div class="field">
+          <label for="linkedin">LinkedIn profile</label>
+          <input type="url" id="linkedin" name="linkedin" value="https://linkedin.com/in/prefilled" />
+        </div>
+
+        <!-- Hidden and disabled controls must be ignored entirely -->
+        <input type="hidden" name="csrf_token" value="abc123" />
+        <input type="text" name="internal_ref" disabled />
+
+        <button type="button">Back</button>
+        <button type="submit">Next</button>
+      </form>
+    </main>
+  </body>
+</html>
